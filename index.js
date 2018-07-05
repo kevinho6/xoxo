@@ -32,10 +32,6 @@ const getInput = player => async () => {
 // Debug: Print the state
 // game.subscribe(() => console.log(game.getState()));
 
-// game.subscribe(() => {
-//   console.log(getInput())
-// })
-
 game.subscribe(printBoard);
 game.subscribe(getInput("X"));
 game.subscribe(getInput("O"));
