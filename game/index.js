@@ -1,24 +1,28 @@
 /* eslint-disable */
-import { Map } from 'immutable';
+import { Map } from "immutable";
 
 let board = Map();
 
-const move = (turn, position) => ({
-  type: 'MOVE',
+export const move = (turn, position) => ({
+  type: "MOVE",
   position: position,
-  player: turn,
+  player: turn
 });
 
-export default function reducer(state = { game: Map() }, action) {
+export default function reducer(
+  state = { board: Map(), player: "", turn: "X" },
+  action
+) {
   switch (action.type) {
-    case 'MOVE':
-      if (state.player === 'X') {
-        let nextPlayer = 'O';
+    case "MOVE":
+      let nextPlayer = "";
+      if (state.player === "X") {
+        nextPlayer = "O";
       } else {
-        let nextPlayer = 'X';
+        nextPlayer = "X";
       }
-      board = state.game.setIn(state.position, state.player);
-      return { ...state, game: board, player: nextPlayer };
+      board = state.board.setIn(action.position, action.player);
+      return { ...state, board: board, player: nextPlayer };
 
     default:
       return state;
